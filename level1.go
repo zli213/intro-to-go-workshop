@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -13,8 +14,24 @@ import (
 // Step 2: alternate between 2 colors (learn about conditions)
 // Step 3: make it a gradient (learn to build strings)
 func colors() []string {
-	// FIXME
-	return nil
+	// Create an array to hold the 25 colors
+	colorArray := make([]string, 25)
+
+	// Each step size for the gradient
+	step := 255 / 24 // 255 is decimal for FF, and 24 is 25 - 1 (since we start from 0)
+
+	for i := 0; i < 25; i++ {
+		// Decrease the red component by step for each iteration
+		redComponent := 255 - (step * i)
+
+		// Increase the green component by step for each iteration
+		greenComponent := step * i
+
+		// Create the color string
+		colorArray[i] = fmt.Sprintf("#%02X%02XFF", redComponent, greenComponent)
+	}
+
+	return colorArray
 }
 
 // No need to edit below this line
